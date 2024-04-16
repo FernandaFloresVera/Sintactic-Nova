@@ -1,0 +1,77 @@
+___________________________________________
+def p_func_decl(p):
+    'func_decl : RN IDENTIFICADOR PARENTESIS_IZQUIERDO PARENTESIS_DERECHO LLAVE_IZQUIERDA statements LLAVE_DERECHA'
+    p[0] = {'type': 'func_decl', 'name': p[2], 'body': p[6]}
+    print(f"run: {p[6]}")
+
+    CORRECTO:
+       run principal() {screen ("esto es una funcion llamada principal");}
+       run saludo () { screen ("esto tambien es una funcion llamada saludo");}
+    INCORRECTO: 
+       RUN saludo () { screen ("esto ya no es una funcion");}
+       run saludo () { SCREEN ("esto ya no es una funcion");}
+________________________________________________________________
+def p_var_decl(p):
+    'var_decl : VARIABLE DOS_P TYPE EQUAL value SEMICOLON'
+    p[0] = {'type': 'var_decl', 'var_type': p[3], 'identifier': p[1], 'value': p[5]}
+    
+    if p[2] == "int" and not isinstance(p[5], int):
+        raise SyntaxError(f"Se esperaba un entero en la variable")
+    elif p[2] == "string" and not (p[5].startswith('"') and p[5].endswith('"')):
+        raise SyntaxError(f"Se esperaba una cadena en la variable")
+
+    CORRECTO:
+    _nombre: string ="Luis";
+    _edad: int = 18;
+    _x: int = 4;
+
+    INCORRECTO:
+    _nombre: string =Luis;
+    _edad: int = "dwdfw";
+    _x: int = char;
+_____________________________________________________________________________________________
+def p_if_decl(p):
+    'if_decl : FN IDENTIFICADOR LPAREN RPAREN LBRACKET WHEN LPAREN condition RPAREN LBRACKET statements RBRACKET else_decl RBRACKET'
+    p[0] = {'type': 'if_decl', 'condition': p[8], 'body': p[11], 'else': p[13]}
+
+def p_condition(p):
+    '''condition : IDENTIFICADOR OPERADOR value
+                 | IDENTIFICADOR OPERADOR IDENTIFICADOR
+                 | VARIABLE OPERADOR value
+    '''
+    p[0] = ('condition', p[1], p[2], p[3])
+
+def p_statement_print(p):
+    '''statement : SCREEN LPAREN STRING RPAREN SEMICOLON
+                 | SCREEN LPAREN IDENTIFICADOR RPAREN SEMICOLON'''
+    p[0] = {'type': 'print_stmt', 'value': p[3]}
+
+    CORRECTO:
+    _edad : int = 50;
+    fn acceder() { when (_edad >= 18) { screen("permitido"); } so { screen("denegado"); }}
+
+    _edad : int = 5;
+    fn acceder() { when (_edad >= 18) { screen("Tu edad es permitida"); } so { screen("Tu edad no es permitida"); }}
+
+    INCORRECTO: 
+    _edad : string = "cadena ";
+    fn acceder() { when (_edad >= 18) { screen("permitido"); } so { screen("denegado"); }}
+
+    _otra : int = 11;
+    fn acceder() { WHEN (_otra >= 18) { screen("permitido"); } so { screen("denegado"); }}
+
+
+_______________________________________________________________________________________________________
+def p_for_decl(p):
+    'for_decl : FN IDENTIFICADOR LPAREN RPAREN LBRACKET CYCLE LPAREN var_decl condition SEMICOLON incremento RPAREN LBRACKET statements RBRACKET RBRACKET'
+    p[0] = {'type': 'for_decl', 'init': p[8], 'cond': p[9], 'inc': p[11], 'body': p[14]}
+    
+
+    CORRECTO:
+     fn saludo() { cycle (_i: int = 0; i > 3; i++) { screen("impresion cycle"); }}
+     fn saludo() { cycle (_i: int = 0; i > 10; i++) { screen("loop"); }}
+
+    INCORRECTO: 
+     fn saludo() { cycle (_i: int = 0; i > 10; i++) { screen("hola" + _nombre); }}
+
+     fn saludo() { CYCLE (_i: int = 0; i > 3; i++) { screen("impresion cycle"); }}

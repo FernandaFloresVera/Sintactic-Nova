@@ -1,0 +1,773 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> structures
+Rule 2     structures -> structures structure
+Rule 3     structures -> structure
+Rule 4     structure -> var_decl
+Rule 5     structure -> func_decl
+Rule 6     structure -> cycle_decl
+Rule 7     structure -> when_decl
+Rule 8     structure -> statement
+Rule 9     var_decl -> VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C
+Rule 10    func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D
+Rule 11    cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+Rule 12    when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+Rule 13    so_decl -> SO LLAVE_I statements LLAVE_D
+Rule 14    statements -> statements statement
+Rule 15    statements -> statement
+Rule 16    statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+Rule 17    statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+Rule 18    value -> INT
+Rule 19    value -> STRING
+Rule 20    condicion -> IDENTIFICADOR OPERADOR value
+Rule 21    condicion -> IDENTIFICADOR OPERADOR IDENTIFICADOR
+Rule 22    condicion -> VARIABLE OPERADOR value
+Rule 23    incremento -> IDENTIFICADOR PM
+
+Terminals, with rules where they appear
+
+CYCLE                : 11
+DOS_P                : 9
+FN                   : 11 12
+IDENTIFICADOR        : 10 11 12 17 20 21 21 23
+IGUAL                : 9
+INT                  : 18
+LLAVE_D              : 10 11 11 12 12 13
+LLAVE_I              : 10 11 11 12 12 13
+OPERADOR             : 20 21 22
+PARENTESIS_D         : 10 11 11 12 12 16 17
+PARENTESIS_I         : 10 11 11 12 12 16 17
+PM                   : 23
+PUNTO_Y_C            : 9 11 16 17
+RN                   : 10
+SCREEN               : 16 17
+SO                   : 13
+STRING               : 16 19
+TYPE                 : 9
+VARIABLE             : 9 22
+WHEN                 : 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+condicion            : 11 12
+cycle_decl           : 6
+func_decl            : 5
+incremento           : 11
+so_decl              : 12
+start                : 0
+statement            : 8 14 15
+statements           : 10 11 12 13 14
+structure            : 2 3
+structures           : 1 2
+value                : 9 20 22
+var_decl             : 4 11
+when_decl            : 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . structures
+    (2) structures -> . structures structure
+    (3) structures -> . structure
+    (4) structure -> . var_decl
+    (5) structure -> . func_decl
+    (6) structure -> . cycle_decl
+    (7) structure -> . when_decl
+    (8) structure -> . statement
+    (9) var_decl -> . VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C
+    (10) func_decl -> . RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D
+    (11) cycle_decl -> . FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (12) when_decl -> . FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    VARIABLE        shift and go to state 9
+    RN              shift and go to state 10
+    FN              shift and go to state 11
+    SCREEN          shift and go to state 12
+
+    start                          shift and go to state 1
+    structures                     shift and go to state 2
+    structure                      shift and go to state 3
+    var_decl                       shift and go to state 4
+    func_decl                      shift and go to state 5
+    cycle_decl                     shift and go to state 6
+    when_decl                      shift and go to state 7
+    statement                      shift and go to state 8
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> structures .
+    (2) structures -> structures . structure
+    (4) structure -> . var_decl
+    (5) structure -> . func_decl
+    (6) structure -> . cycle_decl
+    (7) structure -> . when_decl
+    (8) structure -> . statement
+    (9) var_decl -> . VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C
+    (10) func_decl -> . RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D
+    (11) cycle_decl -> . FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (12) when_decl -> . FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    $end            reduce using rule 1 (start -> structures .)
+    VARIABLE        shift and go to state 9
+    RN              shift and go to state 10
+    FN              shift and go to state 11
+    SCREEN          shift and go to state 12
+
+    structure                      shift and go to state 13
+    var_decl                       shift and go to state 4
+    func_decl                      shift and go to state 5
+    cycle_decl                     shift and go to state 6
+    when_decl                      shift and go to state 7
+    statement                      shift and go to state 8
+
+state 3
+
+    (3) structures -> structure .
+
+    VARIABLE        reduce using rule 3 (structures -> structure .)
+    RN              reduce using rule 3 (structures -> structure .)
+    FN              reduce using rule 3 (structures -> structure .)
+    SCREEN          reduce using rule 3 (structures -> structure .)
+    $end            reduce using rule 3 (structures -> structure .)
+
+
+state 4
+
+    (4) structure -> var_decl .
+
+    VARIABLE        reduce using rule 4 (structure -> var_decl .)
+    RN              reduce using rule 4 (structure -> var_decl .)
+    FN              reduce using rule 4 (structure -> var_decl .)
+    SCREEN          reduce using rule 4 (structure -> var_decl .)
+    $end            reduce using rule 4 (structure -> var_decl .)
+
+
+state 5
+
+    (5) structure -> func_decl .
+
+    VARIABLE        reduce using rule 5 (structure -> func_decl .)
+    RN              reduce using rule 5 (structure -> func_decl .)
+    FN              reduce using rule 5 (structure -> func_decl .)
+    SCREEN          reduce using rule 5 (structure -> func_decl .)
+    $end            reduce using rule 5 (structure -> func_decl .)
+
+
+state 6
+
+    (6) structure -> cycle_decl .
+
+    VARIABLE        reduce using rule 6 (structure -> cycle_decl .)
+    RN              reduce using rule 6 (structure -> cycle_decl .)
+    FN              reduce using rule 6 (structure -> cycle_decl .)
+    SCREEN          reduce using rule 6 (structure -> cycle_decl .)
+    $end            reduce using rule 6 (structure -> cycle_decl .)
+
+
+state 7
+
+    (7) structure -> when_decl .
+
+    VARIABLE        reduce using rule 7 (structure -> when_decl .)
+    RN              reduce using rule 7 (structure -> when_decl .)
+    FN              reduce using rule 7 (structure -> when_decl .)
+    SCREEN          reduce using rule 7 (structure -> when_decl .)
+    $end            reduce using rule 7 (structure -> when_decl .)
+
+
+state 8
+
+    (8) structure -> statement .
+
+    VARIABLE        reduce using rule 8 (structure -> statement .)
+    RN              reduce using rule 8 (structure -> statement .)
+    FN              reduce using rule 8 (structure -> statement .)
+    SCREEN          reduce using rule 8 (structure -> statement .)
+    $end            reduce using rule 8 (structure -> statement .)
+
+
+state 9
+
+    (9) var_decl -> VARIABLE . DOS_P TYPE IGUAL value PUNTO_Y_C
+
+    DOS_P           shift and go to state 14
+
+
+state 10
+
+    (10) func_decl -> RN . IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D
+
+    IDENTIFICADOR   shift and go to state 15
+
+
+state 11
+
+    (11) cycle_decl -> FN . IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (12) when_decl -> FN . IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+
+    IDENTIFICADOR   shift and go to state 16
+
+
+state 12
+
+    (16) statement -> SCREEN . PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> SCREEN . PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    PARENTESIS_I    shift and go to state 17
+
+
+state 13
+
+    (2) structures -> structures structure .
+
+    VARIABLE        reduce using rule 2 (structures -> structures structure .)
+    RN              reduce using rule 2 (structures -> structures structure .)
+    FN              reduce using rule 2 (structures -> structures structure .)
+    SCREEN          reduce using rule 2 (structures -> structures structure .)
+    $end            reduce using rule 2 (structures -> structures structure .)
+
+
+state 14
+
+    (9) var_decl -> VARIABLE DOS_P . TYPE IGUAL value PUNTO_Y_C
+
+    TYPE            shift and go to state 18
+
+
+state 15
+
+    (10) func_decl -> RN IDENTIFICADOR . PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D
+
+    PARENTESIS_I    shift and go to state 19
+
+
+state 16
+
+    (11) cycle_decl -> FN IDENTIFICADOR . PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (12) when_decl -> FN IDENTIFICADOR . PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+
+    PARENTESIS_I    shift and go to state 20
+
+
+state 17
+
+    (16) statement -> SCREEN PARENTESIS_I . STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> SCREEN PARENTESIS_I . IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    STRING          shift and go to state 21
+    IDENTIFICADOR   shift and go to state 22
+
+
+state 18
+
+    (9) var_decl -> VARIABLE DOS_P TYPE . IGUAL value PUNTO_Y_C
+
+    IGUAL           shift and go to state 23
+
+
+state 19
+
+    (10) func_decl -> RN IDENTIFICADOR PARENTESIS_I . PARENTESIS_D LLAVE_I statements LLAVE_D
+
+    PARENTESIS_D    shift and go to state 24
+
+
+state 20
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I . PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I . PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+
+    PARENTESIS_D    shift and go to state 25
+
+
+state 21
+
+    (16) statement -> SCREEN PARENTESIS_I STRING . PARENTESIS_D PUNTO_Y_C
+
+    PARENTESIS_D    shift and go to state 26
+
+
+state 22
+
+    (17) statement -> SCREEN PARENTESIS_I IDENTIFICADOR . PARENTESIS_D PUNTO_Y_C
+
+    PARENTESIS_D    shift and go to state 27
+
+
+state 23
+
+    (9) var_decl -> VARIABLE DOS_P TYPE IGUAL . value PUNTO_Y_C
+    (18) value -> . INT
+    (19) value -> . STRING
+
+    INT             shift and go to state 29
+    STRING          shift and go to state 30
+
+    value                          shift and go to state 28
+
+state 24
+
+    (10) func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D . LLAVE_I statements LLAVE_D
+
+    LLAVE_I         shift and go to state 31
+
+
+state 25
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D . LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D . LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+
+    LLAVE_I         shift and go to state 32
+
+
+state 26
+
+    (16) statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D . PUNTO_Y_C
+
+    PUNTO_Y_C       shift and go to state 33
+
+
+state 27
+
+    (17) statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D . PUNTO_Y_C
+
+    PUNTO_Y_C       shift and go to state 34
+
+
+state 28
+
+    (9) var_decl -> VARIABLE DOS_P TYPE IGUAL value . PUNTO_Y_C
+
+    PUNTO_Y_C       shift and go to state 35
+
+
+state 29
+
+    (18) value -> INT .
+
+    PUNTO_Y_C       reduce using rule 18 (value -> INT .)
+    PARENTESIS_D    reduce using rule 18 (value -> INT .)
+
+
+state 30
+
+    (19) value -> STRING .
+
+    PUNTO_Y_C       reduce using rule 19 (value -> STRING .)
+    PARENTESIS_D    reduce using rule 19 (value -> STRING .)
+
+
+state 31
+
+    (10) func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I . statements LLAVE_D
+    (14) statements -> . statements statement
+    (15) statements -> . statement
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    SCREEN          shift and go to state 12
+
+    statements                     shift and go to state 36
+    statement                      shift and go to state 37
+
+state 32
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I . CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I . WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+
+    CYCLE           shift and go to state 38
+    WHEN            shift and go to state 39
+
+
+state 33
+
+    (16) statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C .
+
+    VARIABLE        reduce using rule 16 (statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C .)
+    RN              reduce using rule 16 (statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C .)
+    FN              reduce using rule 16 (statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C .)
+    SCREEN          reduce using rule 16 (statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C .)
+    $end            reduce using rule 16 (statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C .)
+    LLAVE_D         reduce using rule 16 (statement -> SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C .)
+
+
+state 34
+
+    (17) statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C .
+
+    VARIABLE        reduce using rule 17 (statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C .)
+    RN              reduce using rule 17 (statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C .)
+    FN              reduce using rule 17 (statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C .)
+    SCREEN          reduce using rule 17 (statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C .)
+    $end            reduce using rule 17 (statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C .)
+    LLAVE_D         reduce using rule 17 (statement -> SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C .)
+
+
+state 35
+
+    (9) var_decl -> VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C .
+
+    VARIABLE        reduce using rule 9 (var_decl -> VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C .)
+    RN              reduce using rule 9 (var_decl -> VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C .)
+    FN              reduce using rule 9 (var_decl -> VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C .)
+    SCREEN          reduce using rule 9 (var_decl -> VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C .)
+    $end            reduce using rule 9 (var_decl -> VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C .)
+    IDENTIFICADOR   reduce using rule 9 (var_decl -> VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C .)
+
+
+state 36
+
+    (10) func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements . LLAVE_D
+    (14) statements -> statements . statement
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    LLAVE_D         shift and go to state 40
+    SCREEN          shift and go to state 12
+
+    statement                      shift and go to state 41
+
+state 37
+
+    (15) statements -> statement .
+
+    LLAVE_D         reduce using rule 15 (statements -> statement .)
+    SCREEN          reduce using rule 15 (statements -> statement .)
+
+
+state 38
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE . PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+
+    PARENTESIS_I    shift and go to state 42
+
+
+state 39
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN . PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+
+    PARENTESIS_I    shift and go to state 43
+
+
+state 40
+
+    (10) func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D .
+
+    VARIABLE        reduce using rule 10 (func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D .)
+    RN              reduce using rule 10 (func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D .)
+    FN              reduce using rule 10 (func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D .)
+    SCREEN          reduce using rule 10 (func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D .)
+    $end            reduce using rule 10 (func_decl -> RN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I statements LLAVE_D .)
+
+
+state 41
+
+    (14) statements -> statements statement .
+
+    LLAVE_D         reduce using rule 14 (statements -> statements statement .)
+    SCREEN          reduce using rule 14 (statements -> statements statement .)
+
+
+state 42
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I . var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (9) var_decl -> . VARIABLE DOS_P TYPE IGUAL value PUNTO_Y_C
+
+    VARIABLE        shift and go to state 9
+
+    var_decl                       shift and go to state 44
+
+state 43
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I . condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+    (20) condicion -> . IDENTIFICADOR OPERADOR value
+    (21) condicion -> . IDENTIFICADOR OPERADOR IDENTIFICADOR
+    (22) condicion -> . VARIABLE OPERADOR value
+
+    IDENTIFICADOR   shift and go to state 45
+    VARIABLE        shift and go to state 47
+
+    condicion                      shift and go to state 46
+
+state 44
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl . condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (20) condicion -> . IDENTIFICADOR OPERADOR value
+    (21) condicion -> . IDENTIFICADOR OPERADOR IDENTIFICADOR
+    (22) condicion -> . VARIABLE OPERADOR value
+
+    IDENTIFICADOR   shift and go to state 45
+    VARIABLE        shift and go to state 47
+
+    condicion                      shift and go to state 48
+
+state 45
+
+    (20) condicion -> IDENTIFICADOR . OPERADOR value
+    (21) condicion -> IDENTIFICADOR . OPERADOR IDENTIFICADOR
+
+    OPERADOR        shift and go to state 49
+
+
+state 46
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion . PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D
+
+    PARENTESIS_D    shift and go to state 50
+
+
+state 47
+
+    (22) condicion -> VARIABLE . OPERADOR value
+
+    OPERADOR        shift and go to state 51
+
+
+state 48
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion . PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+
+    PUNTO_Y_C       shift and go to state 52
+
+
+state 49
+
+    (20) condicion -> IDENTIFICADOR OPERADOR . value
+    (21) condicion -> IDENTIFICADOR OPERADOR . IDENTIFICADOR
+    (18) value -> . INT
+    (19) value -> . STRING
+
+    IDENTIFICADOR   shift and go to state 53
+    INT             shift and go to state 29
+    STRING          shift and go to state 30
+
+    value                          shift and go to state 54
+
+state 50
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D . LLAVE_I statements LLAVE_D so_decl LLAVE_D
+
+    LLAVE_I         shift and go to state 55
+
+
+state 51
+
+    (22) condicion -> VARIABLE OPERADOR . value
+    (18) value -> . INT
+    (19) value -> . STRING
+
+    INT             shift and go to state 29
+    STRING          shift and go to state 30
+
+    value                          shift and go to state 56
+
+state 52
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C . incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+    (23) incremento -> . IDENTIFICADOR PM
+
+    IDENTIFICADOR   shift and go to state 57
+
+    incremento                     shift and go to state 58
+
+state 53
+
+    (21) condicion -> IDENTIFICADOR OPERADOR IDENTIFICADOR .
+
+    PARENTESIS_D    reduce using rule 21 (condicion -> IDENTIFICADOR OPERADOR IDENTIFICADOR .)
+    PUNTO_Y_C       reduce using rule 21 (condicion -> IDENTIFICADOR OPERADOR IDENTIFICADOR .)
+
+
+state 54
+
+    (20) condicion -> IDENTIFICADOR OPERADOR value .
+
+    PARENTESIS_D    reduce using rule 20 (condicion -> IDENTIFICADOR OPERADOR value .)
+    PUNTO_Y_C       reduce using rule 20 (condicion -> IDENTIFICADOR OPERADOR value .)
+
+
+state 55
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I . statements LLAVE_D so_decl LLAVE_D
+    (14) statements -> . statements statement
+    (15) statements -> . statement
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    SCREEN          shift and go to state 12
+
+    statements                     shift and go to state 59
+    statement                      shift and go to state 37
+
+state 56
+
+    (22) condicion -> VARIABLE OPERADOR value .
+
+    PARENTESIS_D    reduce using rule 22 (condicion -> VARIABLE OPERADOR value .)
+    PUNTO_Y_C       reduce using rule 22 (condicion -> VARIABLE OPERADOR value .)
+
+
+state 57
+
+    (23) incremento -> IDENTIFICADOR . PM
+
+    PM              shift and go to state 60
+
+
+state 58
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento . PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D
+
+    PARENTESIS_D    shift and go to state 61
+
+
+state 59
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements . LLAVE_D so_decl LLAVE_D
+    (14) statements -> statements . statement
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    LLAVE_D         shift and go to state 62
+    SCREEN          shift and go to state 12
+
+    statement                      shift and go to state 41
+
+state 60
+
+    (23) incremento -> IDENTIFICADOR PM .
+
+    PARENTESIS_D    reduce using rule 23 (incremento -> IDENTIFICADOR PM .)
+
+
+state 61
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D . LLAVE_I statements LLAVE_D LLAVE_D
+
+    LLAVE_I         shift and go to state 63
+
+
+state 62
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D . so_decl LLAVE_D
+    (13) so_decl -> . SO LLAVE_I statements LLAVE_D
+
+    SO              shift and go to state 65
+
+    so_decl                        shift and go to state 64
+
+state 63
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I . statements LLAVE_D LLAVE_D
+    (14) statements -> . statements statement
+    (15) statements -> . statement
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    SCREEN          shift and go to state 12
+
+    statements                     shift and go to state 66
+    statement                      shift and go to state 37
+
+state 64
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl . LLAVE_D
+
+    LLAVE_D         shift and go to state 67
+
+
+state 65
+
+    (13) so_decl -> SO . LLAVE_I statements LLAVE_D
+
+    LLAVE_I         shift and go to state 68
+
+
+state 66
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements . LLAVE_D LLAVE_D
+    (14) statements -> statements . statement
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    LLAVE_D         shift and go to state 69
+    SCREEN          shift and go to state 12
+
+    statement                      shift and go to state 41
+
+state 67
+
+    (12) when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D .
+
+    VARIABLE        reduce using rule 12 (when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D .)
+    RN              reduce using rule 12 (when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D .)
+    FN              reduce using rule 12 (when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D .)
+    SCREEN          reduce using rule 12 (when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D .)
+    $end            reduce using rule 12 (when_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I WHEN PARENTESIS_I condicion PARENTESIS_D LLAVE_I statements LLAVE_D so_decl LLAVE_D .)
+
+
+state 68
+
+    (13) so_decl -> SO LLAVE_I . statements LLAVE_D
+    (14) statements -> . statements statement
+    (15) statements -> . statement
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    SCREEN          shift and go to state 12
+
+    statements                     shift and go to state 70
+    statement                      shift and go to state 37
+
+state 69
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D . LLAVE_D
+
+    LLAVE_D         shift and go to state 71
+
+
+state 70
+
+    (13) so_decl -> SO LLAVE_I statements . LLAVE_D
+    (14) statements -> statements . statement
+    (16) statement -> . SCREEN PARENTESIS_I STRING PARENTESIS_D PUNTO_Y_C
+    (17) statement -> . SCREEN PARENTESIS_I IDENTIFICADOR PARENTESIS_D PUNTO_Y_C
+
+    LLAVE_D         shift and go to state 72
+    SCREEN          shift and go to state 12
+
+    statement                      shift and go to state 41
+
+state 71
+
+    (11) cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D .
+
+    VARIABLE        reduce using rule 11 (cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D .)
+    RN              reduce using rule 11 (cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D .)
+    FN              reduce using rule 11 (cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D .)
+    SCREEN          reduce using rule 11 (cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D .)
+    $end            reduce using rule 11 (cycle_decl -> FN IDENTIFICADOR PARENTESIS_I PARENTESIS_D LLAVE_I CYCLE PARENTESIS_I var_decl condicion PUNTO_Y_C incremento PARENTESIS_D LLAVE_I statements LLAVE_D LLAVE_D .)
+
+
+state 72
+
+    (13) so_decl -> SO LLAVE_I statements LLAVE_D .
+
+    LLAVE_D         reduce using rule 13 (so_decl -> SO LLAVE_I statements LLAVE_D .)
+
